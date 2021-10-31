@@ -25,7 +25,7 @@ public class customerPage extends JPanel implements ActionListener {
     JLabel phoneNo = new JLabel ("Phone Number:");
     JLabel jcomp8 = new JLabel ("newLabel1");
     JButton editDetails = new JButton ("Edit Details");
-    JButton addRoute = new JButton ("Add Route");
+    JButton book_route = new JButton ("Book Route");
     JButton deleteRoute = new JButton ("Delete Route");
     JTable table = new JTable ();
     JScrollPane tableWithScrolBox = new JScrollPane(table);
@@ -84,7 +84,7 @@ public class customerPage extends JPanel implements ActionListener {
         phoneNo.setBounds(320, 115, 100, 25);
         jcomp8.setBounds(130, 80, 100, 25);
         editDetails.setBounds(345, 235, 120, 25);
-        addRoute.setBounds(530, 290, 150, 25);
+        book_route.setBounds(530, 290, 150, 25);
         deleteRoute.setBounds(700, 290, 115, 25);
         tableWithScrolBox.setBounds(10, 330, 815, 140);
         jcomp13.setBounds(130, 115, 160, 25);
@@ -113,7 +113,7 @@ public class customerPage extends JPanel implements ActionListener {
         frame.add(phoneNo);
         frame.add(jcomp8);
         frame.add(editDetails);
-        frame.add(addRoute);
+        frame.add(book_route);
         frame.add(deleteRoute);
         frame.add(tableWithScrolBox);
         frame.add(jcomp13);
@@ -135,7 +135,7 @@ public class customerPage extends JPanel implements ActionListener {
     public void actionEvent()
     {
         editDetails.addActionListener(this);
-        addRoute.addActionListener(this);
+        book_route.addActionListener(this);
         deleteRoute.addActionListener(this);
     }
 

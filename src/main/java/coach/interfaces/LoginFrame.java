@@ -2,7 +2,6 @@ package coach.interfaces;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -100,7 +99,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == RegisterButton) {
-            new RegistrationFrame();
+            new RegistrationFrameCustEmp();
 //            app.frame.setVisible(false);
 //            app.frame.dispose();
         }

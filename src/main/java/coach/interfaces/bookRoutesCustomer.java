@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class bookRoutes extends JPanel implements ActionListener {
+public class bookRoutesCustomer extends JPanel implements ActionListener {
 
     String[] sourceItems = {"Item 1", "Item 2", "Item 3"};
     String[] destinationItems = {"Item 1", "Item 2", "Item 3"};
@@ -23,7 +23,7 @@ public class bookRoutes extends JPanel implements ActionListener {
     JButton bookRouteBtn = new JButton ("Book Selected Route");
 
 
-    public bookRoutes() {
+    public bookRoutesCustomer() {
         createWindow();
         createTable();
         setLocationAndSize();
@@ -79,6 +79,6 @@ public class bookRoutes extends JPanel implements ActionListener {
 
 
     public static void main (String[] args) {
-        new bookRoutes();
+        new bookRoutesCustomer();
     }
 }

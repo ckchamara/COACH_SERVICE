@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistrationFrame extends JFrame implements ActionListener {
+public class RegistrationFrameCustEmp extends JFrame implements ActionListener {
     JFrame frame = new JFrame("Registration Form");
     String[] gender={"Male","Female"};
     JLabel nameLabel=new JLabel("NAME");
@@ -26,7 +26,7 @@ public class RegistrationFrame extends JFrame implements ActionListener {
     JButton resetButton=new JButton("RESET");
 
 
-    RegistrationFrame()
+    RegistrationFrameCustEmp()
     {
         createWindow();
         setLocationAndSize();
@@ -97,6 +97,6 @@ public class RegistrationFrame extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new RegistrationFrame();
+        new RegistrationFrameCustEmp();
     }
 }
