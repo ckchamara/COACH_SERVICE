@@ -268,6 +268,27 @@ public class addRouteEmp extends JPanel implements ActionListener {
         if (e.getSource() == addRouteBtn) {
             //INSERT INTO `busbook`.`routes` (`routeId`, `origin`, `destination`, `departure`, `price`, `seats`, `dates`, `remainSeats`) VALUES ('ff', 'ss', 'ff', '2021-10-12 12:23:00', '32', '43', '43', '43');
 
+
+//            OriginComboBox
+//                    DepartureComboBox
+//            OriginTextField
+//                    CityTextField
+//            PriceTextField
+//                    SeatsComboBox
+//            sunCheckBox
+//                    monCheckBox
+//            friCheckBox
+//                    satCheckBox
+//            thrCheckBox
+//                    tueCheckBox
+//            wedCheckBox
+//                    YearComboBox
+//            MonthComboBox
+//                    DateComboBox
+//            HourComboBox
+//                    MinComboBox
+
+
         }
 
     }
