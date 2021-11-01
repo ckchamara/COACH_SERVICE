@@ -8,7 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class addRouteEmp extends JPanel implements ActionListener {
-    String[] EUCountries = {"Austria","Italy", "Belgium","Latvia", "Bulgaria",	"Lithuania", "Croatia",	"Luxembourg", "Cyprus",	"MaltaCzechia",	"Netherlands", "Denmark",	"Poland", "Estonia",	"Portugal", "Finland",	"Romania", "France",	"Slovakia", "Germany",	"Slovenia", "Greece",	"Spain", "Hungary",	"Sweden", "Ireland"	};
+    String[] EUCountries = {"Austria","Italy", "Belgium","Latvia", "Bulgaria",	"Lithuania", "Croatia",	"Luxembourg", "Cyprus",	"Malta","Czechia",	"Netherlands", "Denmark",	"Poland", "Estonia",	"Portugal", "Finland",	"Romania", "France",	"Slovakia", "Germany",	"Slovenia", "Greece",	"Spain", "Hungary",	"Sweden", "Ireland"	};
     String[] Monthjcomp24Items = {    "1",
             "2",
             "3",
@@ -143,31 +143,31 @@ public class addRouteEmp extends JPanel implements ActionListener {
 
     JFrame frame = new JFrame ("Add Route Employee");
 
-    JComboBox jcomp1 = new JComboBox (EUCountries);
+    JComboBox OriginComboBox = new JComboBox (EUCountries);
     JLabel jcomp2 = new JLabel ("Origin");
-    JComboBox jcomp3 = new JComboBox (EUCountries);
+    JComboBox DepartureComboBox = new JComboBox (EUCountries);
     JLabel jcomp4 = new JLabel ("Departure");
-    JTextField jcomp5 = new JTextField ("CityO");
+    JTextField OriginTextField = new JTextField ("CityO");
     JLabel jcomp6 = new JLabel ("City");
-    JTextField jcomp7 = new JTextField ("CityD");
-    JLabel jcomp8 = new JLabel ("City");
-    JTextField jcomp9 = new JTextField ("Price");
+    JTextField CityTextField = new JTextField ("CityD");
+    JLabel Cityjcomp8 = new JLabel ("City");
+    JTextField PriceTextField = new JTextField ("Price");
     JLabel jcomp10 = new JLabel ("Price");
     JLabel jcomp12 = new JLabel ("Seats");
-    JComboBox Seatsjcomp11 = new JComboBox (seatsNos);
-    JCheckBox jcomp14 = new JCheckBox ("Sun");
-    JCheckBox jcomp15 = new JCheckBox ("Mon");
-    JCheckBox jcomp17 = new JCheckBox ("Fri");
-    JCheckBox jcomp18 = new JCheckBox ("Sat");
-    JCheckBox jcomp19 = new JCheckBox ("Thr");
-    JCheckBox jcomp20 = new JCheckBox ("Tue");
-    JCheckBox jcomp21 = new JCheckBox ("Wed");
+    JComboBox SeatsComboBox = new JComboBox (seatsNos);
+    JCheckBox sunCheckBox = new JCheckBox ("Sun");
+    JCheckBox monCheckBox = new JCheckBox ("Mon");
+    JCheckBox friCheckBox = new JCheckBox ("Fri");
+    JCheckBox satCheckBox = new JCheckBox ("Sat");
+    JCheckBox thrCheckBox = new JCheckBox ("Thr");
+    JCheckBox tueCheckBox = new JCheckBox ("Tue");
+    JCheckBox wedCheckBox = new JCheckBox ("Wed");
     JButton addRouteBtn = new JButton ("Add Route");
-    JComboBox Yearjcomp23 = new JComboBox (Yearcomp26Items);
-    JComboBox jcomp24 = new JComboBox (Monthjcomp24Items);
-    JComboBox jcomp25 = new JComboBox (Datejcomp25Items);
-    JComboBox jcomp26 = new JComboBox (Hourjcomp26Items);
-    JComboBox Minjcomp27 = new JComboBox (Miuutes);
+    JComboBox YearComboBox = new JComboBox (Yearcomp26Items);
+    JComboBox MonthComboBox = new JComboBox (Monthjcomp24Items);
+    JComboBox DateComboBox = new JComboBox (Datejcomp25Items);
+    JComboBox HourComboBox = new JComboBox (Hourjcomp26Items);
+    JComboBox MinComboBox = new JComboBox (Miuutes);
     JLabel jcomp28 = new JLabel ("Year");
     JLabel jcomp29 = new JLabel ("Date");
     JLabel jcomp30 = new JLabel ("Month");
@@ -192,31 +192,31 @@ public class addRouteEmp extends JPanel implements ActionListener {
 
 
     public void setLocationAndSize(){
-        jcomp1.setBounds (25, 35, 150, 25);
+        OriginComboBox.setBounds (25, 35, 150, 25);
         jcomp2.setBounds (25, 10, 100, 25);
-        jcomp3.setBounds (405, 35, 150, 25);
+        DepartureComboBox.setBounds (405, 35, 150, 25);
         jcomp4.setBounds (405, 10, 100, 25);
-        jcomp5.setBounds (180, 35, 150, 25);
+        OriginTextField.setBounds (180, 35, 150, 25);
         jcomp6.setBounds (180, 10, 100, 25);
-        jcomp7.setBounds (560, 35, 150, 25);
-        jcomp8.setBounds (560, 10, 100, 25);
-        jcomp9.setBounds (35, 125, 150, 25);
+        CityTextField.setBounds (560, 35, 150, 25);
+        Cityjcomp8.setBounds (560, 10, 100, 25);
+        PriceTextField.setBounds (35, 125, 150, 25);
         jcomp10.setBounds (35, 100, 100, 25);
-        Seatsjcomp11.setBounds (35, 180, 100, 25);
+        SeatsComboBox.setBounds (35, 180, 100, 25);
         jcomp12.setBounds (35, 155, 100, 25);
-        jcomp14.setBounds (230, 120, 50, 25);
-        jcomp15.setBounds (230, 145, 50, 25);
-        jcomp17.setBounds (305, 145, 55, 25);
-        jcomp18.setBounds (305, 170, 55, 25);
-        jcomp19.setBounds (305, 120, 55, 25);
-        jcomp20.setBounds (230, 170, 55, 25);
-        jcomp21.setBounds (230, 195, 65, 25);
+        sunCheckBox.setBounds (230, 120, 50, 25);
+        monCheckBox.setBounds (230, 145, 50, 25);
+        friCheckBox.setBounds (305, 145, 55, 25);
+        satCheckBox.setBounds (305, 170, 55, 25);
+        thrCheckBox.setBounds (305, 120, 55, 25);
+        tueCheckBox.setBounds (230, 170, 55, 25);
+        wedCheckBox.setBounds (230, 195, 65, 25);
         addRouteBtn.setBounds (320, 305, 100, 25);
-        Yearjcomp23.setBounds (435, 130, 80, 25);
-        jcomp24.setBounds (520, 130, 100, 25);
-        jcomp25.setBounds (625, 130, 100, 25);
-        jcomp26.setBounds (475, 195, 100, 25);
-        Minjcomp27.setBounds (580, 195, 80, 25);
+        YearComboBox.setBounds (435, 130, 80, 25);
+        MonthComboBox.setBounds (520, 130, 100, 25);
+        DateComboBox.setBounds (625, 130, 100, 25);
+        HourComboBox.setBounds (475, 195, 100, 25);
+        MinComboBox.setBounds (580, 195, 80, 25);
         jcomp28.setBounds (435, 105, 40, 25);
         jcomp29.setBounds (625, 105, 40, 25);
         jcomp30.setBounds (520, 105, 45, 25);
@@ -225,31 +225,31 @@ public class addRouteEmp extends JPanel implements ActionListener {
     }
 
     public void addComponentsToFrame() {
-        frame.add (jcomp1);
+        frame.add (OriginComboBox);
         frame.add (jcomp2);
-        frame.add (jcomp3);
+        frame.add (DepartureComboBox);
         frame.add (jcomp4);
-        frame.add (jcomp5);
+        frame.add (OriginTextField);
         frame.add (jcomp6);
-        frame.add (jcomp7);
-        frame.add (jcomp8);
-        frame.add (jcomp9);
+        frame.add (CityTextField);
+        frame.add (Cityjcomp8);
+        frame.add (PriceTextField);
         frame.add (jcomp10);
-        frame.add (Seatsjcomp11);
+        frame.add (SeatsComboBox);
         frame.add (jcomp12);
-        frame.add (jcomp14);
-        frame.add (jcomp15);
-        frame.add (jcomp17);
-        frame.add (jcomp18);
-        frame.add (jcomp19);
-        frame.add (jcomp20);
-        frame.add (jcomp21);
+        frame.add (sunCheckBox);
+        frame.add (monCheckBox);
+        frame.add (friCheckBox);
+        frame.add (satCheckBox);
+        frame.add (thrCheckBox);
+        frame.add (tueCheckBox);
+        frame.add (wedCheckBox);
         frame.add (addRouteBtn);
-        frame.add (Yearjcomp23);
-        frame.add (jcomp24);
-        frame.add (jcomp25);
-        frame.add (jcomp26);
-        frame.add (Minjcomp27);
+        frame.add (YearComboBox);
+        frame.add (MonthComboBox);
+        frame.add (DateComboBox);
+        frame.add (HourComboBox);
+        frame.add (MinComboBox);
         frame. add (jcomp28);
         frame.add (jcomp29);
         frame.add (jcomp30);
@@ -266,6 +266,7 @@ public class addRouteEmp extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addRouteBtn) {
+            //INSERT INTO `busbook`.`routes` (`routeId`, `origin`, `destination`, `departure`, `price`, `seats`, `dates`, `remainSeats`) VALUES ('ff', 'ss', 'ff', '2021-10-12 12:23:00', '32', '43', '43', '43');
 
         }
 
