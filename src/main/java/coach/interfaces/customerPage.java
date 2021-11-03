@@ -146,7 +146,7 @@ public class customerPage extends JPanel implements ActionListener {
     }
 
     public static void main (String[] args) {
-        new employeePage();
+        new customerPage();
     }
 
 }
