@@ -8,10 +8,7 @@ import coach.dao.dbConnection;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import javax.swing.*;
 
 public class addRouteEmp extends JPanel implements ActionListener {
@@ -273,8 +270,10 @@ public class addRouteEmp extends JPanel implements ActionListener {
             int hour = Integer.parseInt(HourComboBox.getSelectedItem().toString());
             int min = Integer.parseInt(MinComboBox.getSelectedItem().toString());
 
-            String formattedDateTime = "" + year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + "00";
             String formattedDateTime2 = "" + year + "-" + month + "-" + date;
+            String formatTime = hour + ":" + min + ":" + "00";
+
+            Time time1 = Time.valueOf(formatTime);
 
             String str="2015-03-31";
             Date date1=Date.valueOf(formattedDateTime2);//converting string into sql date
@@ -289,8 +288,8 @@ public class addRouteEmp extends JPanel implements ActionListener {
             try {
                 Connection conn = dbConnection.getInstance().getConnection();
 
-                String query = " insert into busbook.routes (`routeId`, `origin`, `originCity`, `destination`, `destinationCity`, `departure`, `price`, `seats`, `remainSeats`)"
-                        + " values (?, ?, ?, ?, ? ,?, ?, ?, ?)";
+                String query = " insert into busbook.routes (`routeId`, `origin`, `originCity`, `destination`, `destinationCity`, `departure`, `time`, `price`, `seats`, `remainSeats`)"
+                        + " values (?, ?, ?, ?, ? ,?, ?, ?, ?, ?)";
 
                 // create the mysql insert preparedstatement
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -300,9 +299,10 @@ public class addRouteEmp extends JPanel implements ActionListener {
                 preparedStmt.setString(4, DepartureCountry);
                 preparedStmt.setString(5, departureCity);
                 preparedStmt.setDate(6, date1);
-                preparedStmt.setDouble(7, price);
-                preparedStmt.setInt(8, seats);
-                preparedStmt.setInt(9, 45);
+                preparedStmt.setTime(7, time1);
+                preparedStmt.setDouble(8, price);
+                preparedStmt.setInt(9, seats);
+                preparedStmt.setInt(10, 45);
 
                 // execute the preparedstatement
                 preparedStmt.execute();
