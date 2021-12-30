@@ -9,15 +9,7 @@ public class dao_temp {
     public static ResultSet executeQuery(String sql) throws Exception {
         try {
             // Statements allow to issue SQL queries to the database
-          Connection dbConnect = dbConnection.getInstance().getConnection();
-
-            statement = dbConnect.createStatement();
-            // Result set get the result of the SQL query
-//            resultSet = dbConnect.createStatement().executeQuery("SELECT * FROM busbook.customers");
-            resultSet = dbConnect.createStatement().executeQuery(sql);
-
-            // Result set get the result of the SQL query
-            return statement.executeQuery(sql);
+         return dbConnection.getInstance().getConnection().createStatement().executeQuery(sql);
 
         } catch (Exception e) {
             throw e;
