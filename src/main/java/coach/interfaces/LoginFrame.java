@@ -21,7 +21,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     public void createWindow()
     {
-        frame.setTitle("Registration Form");
+        frame.setTitle("Login Form");
         frame.setBounds(40,40,380,600);
         // frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);

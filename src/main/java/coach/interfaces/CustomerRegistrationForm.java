@@ -145,6 +145,17 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
             }
 
         }
+
+        if (e.getSource() == resetButton) {
+            passwordField.setText("");
+            nameTextField.setText("");
+            lastNameTextField.setText("");
+            DOBField.setText("");
+            AddressTextField.setText("");
+            emailTextField.setText("");
+            MobileTextField.setText("");
+        }
+
     }
 
 

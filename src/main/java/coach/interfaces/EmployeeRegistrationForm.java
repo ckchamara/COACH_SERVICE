@@ -11,17 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class EmployeeRegistrationForm extends JFrame implements ActionListener {
-    JFrame frame = new JFrame("Customer Registration Form");
-    String[] gender={"Male","Female"};
+    JFrame frame = new JFrame("Employee Registration Form");
+
     JLabel firstNameLabel =new JLabel("FIRST NAME");
     JLabel passwordlabel =new JLabel("LAST NAME");
     JLabel lastNameLabel =new JLabel("PASSWORD");
 
-
     JTextField firstnameTextField =new JTextField();
     JPasswordField passwordField =new JPasswordField();
     JTextField lastNameTextField =new JTextField();
-//    JPasswordField passwordField=new JPasswordField();
 
     JButton registerButton=new JButton("REGISTER");
     JButton resetButton=new JButton("RESET");
@@ -105,6 +103,12 @@ public class EmployeeRegistrationForm extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
 
+        }
+
+        if (e.getSource() == resetButton) {
+            passwordField.setText("");
+            firstnameTextField.setText("");
+            lastNameTextField.setText("");
         }
     }
 

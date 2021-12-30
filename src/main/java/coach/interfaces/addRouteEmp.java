@@ -161,20 +161,17 @@ public class addRouteEmp extends JPanel implements ActionListener {
     JTextField PriceTextField = new JTextField();
     JLabel jcomp10 = new JLabel("Price");
     JLabel jcomp12 = new JLabel("Seats");
+
     JComboBox SeatsComboBox = new JComboBox(seatsNos);
-    JCheckBox sunCheckBox = new JCheckBox("Sun");
-    JCheckBox monCheckBox = new JCheckBox("Mon");
-    JCheckBox friCheckBox = new JCheckBox("Fri");
-    JCheckBox satCheckBox = new JCheckBox("Sat");
-    JCheckBox thrCheckBox = new JCheckBox("Thr");
-    JCheckBox tueCheckBox = new JCheckBox("Tue");
-    JCheckBox wedCheckBox = new JCheckBox("Wed");
+
     JButton addRouteBtn = new JButton("Add Route");
+
     JComboBox YearComboBox = new JComboBox(Yearcomp26Items);
     JComboBox MonthComboBox = new JComboBox(Monthjcomp24Items);
     JComboBox DateComboBox = new JComboBox(Datejcomp25Items);
     JComboBox HourComboBox = new JComboBox(Hourjcomp26Items);
     JComboBox MinComboBox = new JComboBox(Miuutes);
+
     JLabel jcomp28 = new JLabel("Year");
     JLabel jcomp29 = new JLabel("Date");
     JLabel jcomp30 = new JLabel("Month");
@@ -211,13 +208,6 @@ public class addRouteEmp extends JPanel implements ActionListener {
         jcomp10.setBounds(35, 100, 100, 25);
         SeatsComboBox.setBounds(35, 180, 100, 25);
         jcomp12.setBounds(35, 155, 100, 25);
-        sunCheckBox.setBounds(230, 120, 50, 25);
-        monCheckBox.setBounds(230, 145, 50, 25);
-        friCheckBox.setBounds(305, 145, 55, 25);
-        satCheckBox.setBounds(305, 170, 55, 25);
-        thrCheckBox.setBounds(305, 120, 55, 25);
-        tueCheckBox.setBounds(230, 170, 55, 25);
-        wedCheckBox.setBounds(230, 195, 65, 25);
         addRouteBtn.setBounds(320, 305, 100, 25);
         YearComboBox.setBounds(435, 130, 80, 25);
         MonthComboBox.setBounds(520, 130, 100, 25);
@@ -244,13 +234,7 @@ public class addRouteEmp extends JPanel implements ActionListener {
         frame.add(jcomp10);
         frame.add(SeatsComboBox);
         frame.add(jcomp12);
-        frame.add(sunCheckBox);
-        frame.add(monCheckBox);
-        frame.add(friCheckBox);
-        frame.add(satCheckBox);
-        frame.add(thrCheckBox);
-        frame.add(tueCheckBox);
-        frame.add(wedCheckBox);
+
         frame.add(addRouteBtn);
         frame.add(YearComboBox);
         frame.add(MonthComboBox);
@@ -269,16 +253,6 @@ public class addRouteEmp extends JPanel implements ActionListener {
         addRouteBtn.addActionListener(this);
     }
 
-    private void setDaysNumbersReference() {
-        sunCheckBox.setToolTipText("1");
-        monCheckBox.setToolTipText("2");
-        friCheckBox.setToolTipText("3");
-        satCheckBox.setToolTipText("4");
-        thrCheckBox.setToolTipText("5");
-        tueCheckBox.setToolTipText("6");
-        wedCheckBox.setToolTipText("7");
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -293,18 +267,6 @@ public class addRouteEmp extends JPanel implements ActionListener {
             int seats = Integer.parseInt(SeatsComboBox.getSelectedItem().toString());
 //            String startDate =
 
-            setDaysNumbersReference();
-
-            int sun_day = sunCheckBox.isSelected() ? 1 : 0;
-            int mon_day = monCheckBox.isSelected() ? 1 : 0;
-            int tue_day = tueCheckBox.isSelected() ? 1 : 0;
-            int wed_day = wedCheckBox.isSelected() ? 1 : 0;
-            int thr_day = thrCheckBox.isSelected() ? 1 : 0;
-            int fri_day = friCheckBox.isSelected() ? 1 : 0;
-            int sat_day = satCheckBox.isSelected() ? 1 : 0;
-
-            String avaialbleDays = String.valueOf(sun_day + mon_day + tue_day + wed_day + thr_day + fri_day + sat_day).replace("0", "");
-
             int year = Integer.parseInt(YearComboBox.getSelectedItem().toString());
             int month = Integer.parseInt(MonthComboBox.getSelectedItem().toString());
             int date = Integer.parseInt(DateComboBox.getSelectedItem().toString());
@@ -312,6 +274,10 @@ public class addRouteEmp extends JPanel implements ActionListener {
             int min = Integer.parseInt(MinComboBox.getSelectedItem().toString());
 
             String formattedDateTime = "" + year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + "00";
+            String formattedDateTime2 = "" + year + "-" + month + "-" + date;
+
+            String str="2015-03-31";
+            Date date1=Date.valueOf(formattedDateTime2);//converting string into sql date
 
             //set route id
             char[] originCountryInitials = OriginCountry.toLowerCase().toCharArray();
@@ -320,29 +286,27 @@ public class addRouteEmp extends JPanel implements ActionListener {
             char[] destiCityInitials = departureCity.toLowerCase().toCharArray();
             String routeID = String.valueOf(originCountryInitials[0] + originCityInitials[1] + "_" + destiCountryInitials[0] + destiCityInitials[1]);
 
-
-            String str="2015-03-31";
-            Date date1=Date.valueOf(str);//converting string into sql date
-
             try {
                 Connection conn = dbConnection.getInstance().getConnection();
 
-                String query = " insert into busbook.users (`routeId`, `origin`, `destination`, `departure`, `price`, `seats`, `dates`, `remainSeats`)"
-                        + " values (?, ?, ?, ?, ? ,?, ?, ?)";
+                String query = " insert into busbook.routes (`routeId`, `origin`, `originCity`, `destination`, `destinationCity`, `departure`, `price`, `seats`, `remainSeats`)"
+                        + " values (?, ?, ?, ?, ? ,?, ?, ?, ?)";
 
                 // create the mysql insert preparedstatement
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
-                preparedStmt.setString(1, "Barney");
-                preparedStmt.setString(2, "Rubble");
-                preparedStmt.setDate(3, date1);
-                preparedStmt.setBoolean(4, false);
-                preparedStmt.setInt(5, 5000);
+                preparedStmt.setString(1, routeID);
+                preparedStmt.setString(2, OriginCountry);
+                preparedStmt.setString(3, OriginCity);
+                preparedStmt.setString(4, DepartureCountry);
+                preparedStmt.setString(5, departureCity);
+                preparedStmt.setDate(6, date1);
+                preparedStmt.setDouble(7, price);
+                preparedStmt.setInt(8, seats);
+                preparedStmt.setInt(9, 45);
 
                 // execute the preparedstatement
                 preparedStmt.execute();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 ex.printStackTrace();
             }
 
