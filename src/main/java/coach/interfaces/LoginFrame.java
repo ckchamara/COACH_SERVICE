@@ -99,7 +99,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == RegisterButton) {
-            new RegistrationFrameCustEmp();
+            new CustomerRegistrationForm();
 //            app.frame.setVisible(false);
 //            app.frame.dispose();
         }

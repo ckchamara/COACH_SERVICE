@@ -10,14 +10,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class RegistrationFrameCustEmp extends JFrame implements ActionListener {
+public class EmployeeRegistrationForm extends JFrame implements ActionListener {
     JFrame frame = new JFrame("Customer Registration Form");
     String[] gender={"Male","Female"};
     JLabel firstNameLabel =new JLabel("FIRST NAME");
     JLabel genderLabel=new JLabel("GENDER");
     JLabel lastNameLabel =new JLabel("LAST NAME");
     JLabel passwordLabel=new JLabel("PASSWORD");
-    JLabel DOBLabel =new JLabel("DOB LABEL");
+    JLabel DOBLabel =new JLabel("DOB");
     JLabel AddressLable =new JLabel("ADDRESS");
     JLabel emailLabel=new JLabel("EMAIL");
     JLabel MobileNoLabel=new JLabel("MOBILE NO");
@@ -36,7 +36,7 @@ public class RegistrationFrameCustEmp extends JFrame implements ActionListener {
     JButton resetButton=new JButton("RESET");
 
 
-    RegistrationFrameCustEmp()
+    EmployeeRegistrationForm()
     {
         createWindow();
         setLocationAndSize();
@@ -150,6 +150,6 @@ public class RegistrationFrameCustEmp extends JFrame implements ActionListener {
 
 
     public static void main(String[] args) {
-        new RegistrationFrameCustEmp();
+        new EmployeeRegistrationForm();
     }
 }
