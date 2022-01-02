@@ -31,6 +31,7 @@ public class employeePage extends JPanel implements ActionListener {
 
     String tableData[][] = new String[25][20];
 
+    DefaultTableModel model;
 
     public employeePage() {
         createWindow();
@@ -44,18 +45,18 @@ public class employeePage extends JPanel implements ActionListener {
 
     }
 
-    public void setJlabelParams(){
+    public void setJlabelParams() {
         ResultSet resultSet = null;
         try {
             Connection conn = dbConnection.getInstance().getConnection();
-            // TODO: 1/2/2022  
+            // TODO: 1/2/2022
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=2");
             resultSet = preparedStatement.executeQuery();
             int i = 0;
             while (resultSet.next()) {
-                 email_label = new JLabel(String.valueOf(resultSet.getInt("empId")));
-                 firstname_label = new JLabel(String.valueOf(resultSet.getString("firstName")));
-                 lastname_label = new JLabel(String.valueOf(resultSet.getString("lastName")));
+                email_label = new JLabel(String.valueOf(resultSet.getInt("empId")));
+                firstname_label = new JLabel(String.valueOf(resultSet.getString("firstName")));
+                lastname_label = new JLabel(String.valueOf(resultSet.getString("lastName")));
                 i++;
             }
         } catch (Exception e) {
@@ -110,16 +111,14 @@ public class employeePage extends JPanel implements ActionListener {
         frame.pack();
     }
 
-    private void setVisibleWindow(){frame.setVisible(true);}
+    private void setVisibleWindow() {
+        frame.setVisible(true);
+    }
 
     public void createTable() {
-        Object[] columns = {"Route Id", "Origin","originCity", "Destination","destinationCity", "Departure","time", "Price", "Seates", "RemainSeats"};
-        final DefaultTableModel model = new DefaultTableModel(tableData, columns);
+        Object[] columns = {"Route Id", "Origin", "originCity", "Destination", "destinationCity", "Departure", "time", "Price", "Seates", "RemainSeats"};
+        model = new DefaultTableModel(tableData, columns);
         table.setModel(model);
-        table.setBackground(Color.CYAN.brighter());
-        table.setForeground(Color.black);
-        Font font = new Font("", 1, 18);
-        table.setFont(font);
         table.setRowHeight(30);
     }
 
@@ -166,7 +165,22 @@ public class employeePage extends JPanel implements ActionListener {
         } else if (e.getSource() == addRoute) {
             // TODO: 1/2/2022
         } else if (e.getSource() == deleteRoute) {
-            // TODO: 1/2/2022
+            int column = 0;
+            int row = table.getSelectedRow();
+            String value = table.getModel().getValueAt(row, column).toString();
+
+            ResultSet resultSet = null;
+            Statement statement = null;
+            try {
+                Connection conn = dbConnection.getInstance().getConnection();
+                PreparedStatement preparedStatement = conn
+                        .prepareStatement("delete from busbook.routes where routeId= ? ; ");
+                preparedStatement.setString(1, value);
+                preparedStatement.executeUpdate();
+                model.removeRow(row);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
 
     }
