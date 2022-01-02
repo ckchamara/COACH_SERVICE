@@ -41,15 +41,17 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
         createWindow();
         setLocationAndSize();
         addComponentsToFrame();
+        setVisibleWindow();
         actionEvent();
     }
+    private void setVisibleWindow(){frame.setVisible(true);}
+
     public void createWindow()
     {
 
         frame.setBounds(40,40,380,600);
         frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }

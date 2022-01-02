@@ -50,16 +50,17 @@ public class customerPage extends JPanel implements ActionListener {
         createTable();
         setLocationAndSize();
         addComponentsToFrame();
+        setVisibleWindow();
         actionEvent();
 
     }
+    private void setVisibleWindow(){frame.setVisible(true);}
 
     private void createWindow() {
         frame.setPreferredSize (new Dimension (850, 520));
         frame.setLayout (null);
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible (true);
     }
 
     public void createTable() {

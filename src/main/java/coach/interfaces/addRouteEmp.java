@@ -180,15 +180,17 @@ public class addRouteEmp extends JPanel implements ActionListener {
         createWindow();
         setLocationAndSize();
         addComponentsToFrame();
+        setVisibleWindow();
         actionEvent();
     }
+    private void setVisibleWindow(){frame.setVisible(true);}
+
 
     public void createWindow() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(760, 380));
         frame.setLayout(null);
         frame.pack();
-        frame.setVisible(true);
     }
 
 

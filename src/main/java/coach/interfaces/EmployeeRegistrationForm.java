@@ -30,8 +30,12 @@ public class EmployeeRegistrationForm extends JFrame implements ActionListener {
         createWindow();
         setLocationAndSize();
         addComponentsToFrame();
+        setVisibleWindow();
         actionEvent();
     }
+
+    private void setVisibleWindow(){frame.setVisible(true);}
+
     public void createWindow()
     {
 
@@ -40,7 +44,6 @@ public class EmployeeRegistrationForm extends JFrame implements ActionListener {
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
     }
     public void setLocationAndSize()
     {

@@ -28,15 +28,17 @@ public class bookRoutesCustomer extends JPanel implements ActionListener {
         createTable();
         setLocationAndSize();
         addComponentsToFrame();
+        setVisibleWindow();
         actionEvent();
     }
+
+    private void setVisibleWindow(){frame.setVisible(true);}
 
     public void createWindow() {
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize (new Dimension (745, 350));
         frame.setLayout (null);
         frame.pack();
-        frame.setVisible (true);
     }
 
     public void createTable() {

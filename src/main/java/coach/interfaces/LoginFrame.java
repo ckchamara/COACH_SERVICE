@@ -25,7 +25,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         frame.setBounds(40,40,380,600);
         // frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
@@ -36,9 +35,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
+        setVisibleWindow();
         addActionEvent();
 
     }
+    private void setVisibleWindow(){frame.setVisible(true);}
 
     public void setLayoutManager() {
         frame.setLayout(null);
@@ -81,9 +82,9 @@ public class LoginFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Coding Part of LOGIN button
         if (empOrUserCheck.isSelected()){
-            // TODO: 12/30/2021 emp code 
+            // TODO: 12/30/2021 emp code
         }else {
-            // TODO: 12/30/2021 customer code 
+            // TODO: 12/30/2021 customer code
         }
         if (e.getSource() == loginButton) {
             String userText;
