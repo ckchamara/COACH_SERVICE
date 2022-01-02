@@ -25,21 +25,42 @@ public class employeePage extends JPanel implements ActionListener {
     JTable table = new JTable();
     JScrollPane tableWithScrolBox = new JScrollPane(table);
 
-    JLabel email_label = new JLabel("email_label");
-    JLabel firstname_label = new JLabel("firstname_label");
-    JLabel lastname_label = new JLabel("lastname_label");
+    JLabel email_label;
+    JLabel firstname_label;
+    JLabel lastname_label;
 
     String tableData[][] = new String[25][20];
 
 
     public employeePage() {
         createWindow();
+        setJlabelParams();
         setLocationAndSize();
         populateData();
         createTable();
         addComponentsToFrame();
         setVisibleWindow();
         actionEvent();
+
+    }
+
+    public void setJlabelParams(){
+        ResultSet resultSet = null;
+        try {
+            Connection conn = dbConnection.getInstance().getConnection();
+            // TODO: 1/2/2022  
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=2");
+            resultSet = preparedStatement.executeQuery();
+            int i = 0;
+            while (resultSet.next()) {
+                 email_label = new JLabel(String.valueOf(resultSet.getInt("empId")));
+                 firstname_label = new JLabel(String.valueOf(resultSet.getString("firstName")));
+                 lastname_label = new JLabel(String.valueOf(resultSet.getString("lastName")));
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
