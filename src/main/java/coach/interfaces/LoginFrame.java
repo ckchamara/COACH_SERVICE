@@ -80,6 +80,11 @@ public class LoginFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //Coding Part of LOGIN button
+        if (empOrUserCheck.isSelected()){
+            // TODO: 12/30/2021 emp code 
+        }else {
+            // TODO: 12/30/2021 customer code 
+        }
         if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
