@@ -117,9 +117,8 @@ public class LoginFrame extends JFrame implements ActionListener {
             } else {
                 passwordField.setEchoChar('*');
             }
-
-
         }
+
     }
 
     public static void main(String[] args) {

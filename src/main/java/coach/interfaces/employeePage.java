@@ -15,11 +15,12 @@ import java.sql.*;
 public class employeePage extends JPanel implements ActionListener {
 
     //construct components
+    String employeeId;
     JFrame frame = new JFrame("Employee Profile");
     JLabel empid = new JLabel("EMP ID:");
     JLabel lastname = new JLabel("LASTNAME:");
     JLabel firstName = new JLabel("FIRST NAME");
-    JButton editDetails = new JButton("Edit Details");
+    JButton editDetails = new JButton("Edit My Details");
     JButton addRoute = new JButton("Add Route");
     JButton deleteRoute = new JButton("Delete Route");
     JTable table = new JTable();
@@ -50,11 +51,12 @@ public class employeePage extends JPanel implements ActionListener {
         try {
             Connection conn = dbConnection.getInstance().getConnection();
             // TODO: 1/2/2022
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=2");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=3");
             resultSet = preparedStatement.executeQuery();
             int i = 0;
             while (resultSet.next()) {
                 email_label = new JLabel(String.valueOf(resultSet.getInt("empId")));
+                employeeId = String.valueOf(resultSet.getInt("empId"));
                 firstname_label = new JLabel(String.valueOf(resultSet.getString("firstName")));
                 lastname_label = new JLabel(String.valueOf(resultSet.getString("lastName")));
                 i++;
@@ -161,9 +163,10 @@ public class employeePage extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == editDetails) {
-            // TODO: 1/2/2022 fnish the edit button action
+            new EmployeeRegistrationUpdateForm(Integer.parseInt(employeeId));
         } else if (e.getSource() == addRoute) {
             // TODO: 1/2/2022
+            new addRouteEmp();
         } else if (e.getSource() == deleteRoute) {
             int column = 0;
             int row = table.getSelectedRow();
@@ -177,6 +180,7 @@ public class employeePage extends JPanel implements ActionListener {
                         .prepareStatement("delete from busbook.routes where routeId= ? ; ");
                 preparedStatement.setString(1, value);
                 preparedStatement.executeUpdate();
+//                preparedStatement.execute();
                 model.removeRow(row);
             } catch (Exception ex) {
                 ex.printStackTrace();

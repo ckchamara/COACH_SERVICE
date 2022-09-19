@@ -17,7 +17,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
     JLabel genderLabel=new JLabel("GENDER");
     JLabel lastNameLabel =new JLabel("LAST NAME");
     JLabel passwordLabel=new JLabel("PASSWORD");
-    JLabel DOBLabel =new JLabel("DOB");
+    JLabel DOBLabel =new JLabel("DOB (yyyy-mm-dd)");
     JLabel AddressLable =new JLabel("ADDRESS");
     JLabel emailLabel=new JLabel("EMAIL");
     JLabel MobileNoLabel=new JLabel("MOBILE NO");
