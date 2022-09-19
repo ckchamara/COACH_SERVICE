@@ -21,7 +21,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
     JLabel AddressLable =new JLabel("ADDRESS");
     JLabel emailLabel=new JLabel("EMAIL");
     JLabel MobileNoLabel=new JLabel("MOBILE NO");
-
+    JCheckBox showPassword = new JCheckBox("Show Password");
 
     JTextField nameTextField=new JTextField();
     JComboBox genderComboBox=new JComboBox(gender);
@@ -70,6 +70,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
         genderComboBox.setBounds(180,93,165,23);
         lastNameTextField.setBounds(180,143,165,23);
         passwordField.setBounds(180,193,165,23);
+        showPassword.setBounds(180, 219, 150, 15);
         DOBField.setBounds(180,243,165,23);
         AddressTextField.setBounds(180,293,165,23);
         emailTextField.setBounds(180,343,165,23);
@@ -96,6 +97,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
         frame.add(emailTextField);
         frame.add(MobileNoLabel);
         frame.add(MobileTextField);
+        frame.add(showPassword);
 
         frame.add(registerButton);
         frame.add(resetButton);
@@ -105,6 +107,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
     {
         registerButton.addActionListener(this);
         resetButton.addActionListener(this);
+        showPassword.addActionListener(this);
     }
 
 
@@ -156,6 +159,14 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
             AddressTextField.setText("");
             emailTextField.setText("");
             MobileTextField.setText("");
+        }
+
+        if (e.getSource() == showPassword) {
+            if (showPassword.isSelected()) {
+                passwordField.setEchoChar((char) 0);
+            } else {
+                passwordField.setEchoChar('*');
+            }
         }
 
     }
