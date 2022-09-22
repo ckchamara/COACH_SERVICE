@@ -1,4 +1,4 @@
-package coach.interfaces;
+package coach.interfaces.customer;
 
 import coach.dao.dbConnection;
 
@@ -41,7 +41,8 @@ public class CustomerRegistrationUpdateForm extends JFrame implements ActionList
     JButton resetButton = new JButton("RESET");
 
 
-    CustomerRegistrationUpdateForm() {
+    CustomerRegistrationUpdateForm(String CustomerID) {
+        customerId = CustomerID;
         createWindow();
         setLocationAndSize();
         addComponentsToFrame();
@@ -55,11 +56,10 @@ public class CustomerRegistrationUpdateForm extends JFrame implements ActionList
     }
 
     public void createWindow() {
-
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setBounds(40, 40, 380, 600);
         frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
 
@@ -207,6 +207,6 @@ public class CustomerRegistrationUpdateForm extends JFrame implements ActionList
 
 
     public static void main(String[] args) {
-        new CustomerRegistrationUpdateForm();
+        new CustomerRegistrationUpdateForm("123");
     }
 }

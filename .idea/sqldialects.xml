@@ -2,8 +2,8 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Dump20220919.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/EmployeeRegistrationUpdateForm.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/addRouteEmp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/employeePage.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/employee/EmployeeRegistrationUpdateForm.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/employee/addRouteEmp.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/coach/interfaces/employee/employeePage.java" dialect="GenericSQL" />
   </component>
 </project>

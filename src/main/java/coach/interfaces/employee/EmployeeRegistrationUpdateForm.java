@@ -1,4 +1,4 @@
-package coach.interfaces;
+package coach.interfaces.employee;
 
 import coach.dao.dbConnection;
 
@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class EmployeeRegistrationUpdateForm extends JFrame implements ActionListener {
 
     int employeeId;
+//    JFrame frame = new JFrame("Employee Update Form");
     JFrame frame = new JFrame("Employee Update Form");
     JLabel firstNameLabel = new JLabel("FIRST NAME");
     JLabel passwordlabel = new JLabel("LAST NAME");
@@ -30,6 +31,9 @@ public class EmployeeRegistrationUpdateForm extends JFrame implements ActionList
 
     EmployeeRegistrationUpdateForm(int empId) {
         employeeId = empId;
+//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         createWindow();
         setLocationAndSize();
         addComponentsToFrame();
@@ -40,10 +44,6 @@ public class EmployeeRegistrationUpdateForm extends JFrame implements ActionList
     }
 
     private void populateData() {
-
-//        String firstName = firstnameTextField.getText();
-//        String password = passwordTextField.getText();
-//        String lastName = lastNameTextField.getText();
 
         ResultSet resultSet = null;
         try {
@@ -77,7 +77,7 @@ public class EmployeeRegistrationUpdateForm extends JFrame implements ActionList
         frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void setLocationAndSize() {
