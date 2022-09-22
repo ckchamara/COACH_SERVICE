@@ -15,7 +15,7 @@ import java.sql.*;
 public class employeePage extends JPanel implements ActionListener {
 
     //construct components
-    String employeeId;
+    String employeeId = "2";
     JFrame frame = new JFrame("Employee Profile");
     JLabel empid = new JLabel("EMP ID:");
     JLabel lastname = new JLabel("LASTNAME:");
@@ -43,7 +43,6 @@ public class employeePage extends JPanel implements ActionListener {
         addComponentsToFrame();
         setVisibleWindow();
         actionEvent();
-
     }
 
     public void setJlabelParams() {
@@ -51,7 +50,7 @@ public class employeePage extends JPanel implements ActionListener {
         try {
             Connection conn = dbConnection.getInstance().getConnection();
             // TODO: 1/2/2022
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=3");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.employees where empId=2");
             resultSet = preparedStatement.executeQuery();
             int i = 0;
             while (resultSet.next()) {
@@ -69,7 +68,6 @@ public class employeePage extends JPanel implements ActionListener {
 
     private void populateData() {
         ResultSet resultSet = null;
-        Statement statement = null;
         try {
             Connection conn = dbConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from busbook.routes");
@@ -89,16 +87,15 @@ public class employeePage extends JPanel implements ActionListener {
                 Integer remainSeats = resultSet.getInt("remainSeats");
                 tableData[i][0] = String.valueOf(routeId);
                 tableData[i][1] = String.valueOf(origin);
-                tableData[i][3] = String.valueOf(originCity);
-                tableData[i][4] = String.valueOf(destination);
-                tableData[i][5] = String.valueOf(destinationCity);
-                tableData[i][6] = String.valueOf(departure);
-                tableData[i][7] = String.valueOf(time);
-                tableData[i][8] = String.valueOf(price);
-                tableData[i][9] = String.valueOf(seats);
-                tableData[i][10] = String.valueOf(remainSeats);
+                tableData[i][2] = String.valueOf(originCity);
+                tableData[i][3] = String.valueOf(destination);
+                tableData[i][4] = String.valueOf(destinationCity);
+                tableData[i][5] = String.valueOf(departure);
+                tableData[i][6] = String.valueOf(time);
+                tableData[i][7] = String.valueOf(price);
+                tableData[i][8] = String.valueOf(seats);
+                tableData[i][9] = String.valueOf(remainSeats);
                 i++;
-
             }
         } catch (Exception e) {
             e.printStackTrace();

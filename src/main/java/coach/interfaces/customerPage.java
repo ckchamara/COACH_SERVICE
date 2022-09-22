@@ -10,70 +10,75 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class customerPage extends JPanel implements ActionListener {
 
     // TODO: 1/2/2022
-    int customer_id = 123;
+    int customer_id = 10;
+    String tableData[][] = new String[25][20];
+
+    DefaultTableModel model;
 
     //construct components
-    JFrame frame = new JFrame ("Customer Profile");
+    JFrame frame = new JFrame("Customer Profile");
     String[] comp1Items = {"Male", "Female"};
-    JComboBox genderBox = new JComboBox (comp1Items);
+    JComboBox genderBox = new JComboBox(comp1Items);
 
-    JLabel firstName = new JLabel ("First name:");
-    JLabel surname = new JLabel ("Last name:");
-    JLabel jcomp3 = new JLabel ("Gender:");
-    JLabel email = new JLabel ("Email:");
-    JLabel address = new JLabel ("Address:");
-    JLabel jcomp6 = new JLabel ("DOB:");
-    JLabel phoneNo = new JLabel ("Phone Number:");
+    JLabel firstName = new JLabel("First name:");
+    JLabel surname = new JLabel("Last name:");
+    JLabel jcomp3 = new JLabel("Gender:");
+    JLabel email = new JLabel("Email:");
+    JLabel address = new JLabel("Address:");
+    JLabel jcomp6 = new JLabel("DOB:");
+    JLabel phoneNo = new JLabel("Phone Number:");
     JLabel firstname_label;
-    JButton editDetails = new JButton ("Edit Details");
-    JButton book_route = new JButton ("Book Route");
-    JButton deleteRoute = new JButton ("Delete Route");
-    JTable table = new JTable ();
+    JButton editDetails = new JButton("Edit Details");
+    JButton book_route = new JButton("Book Route");
+    JButton deleteRoute = new JButton("Delete Route");
+    JTable table = new JTable();
     JScrollPane tableWithScrolBox = new JScrollPane(table);
     JLabel lastname_label;
 
     JLabel dob_label;
     JLabel mail_label;
     JLabel phone_label;
-    JLabel addr_label ;
+    JLabel addr_label;
 
     public customerPage() {
         createWindow();
+        populateData();
         createTable();
         setJlabelParams();
         setLocationAndSize();
         addComponentsToFrame();
         setVisibleWindow();
         actionEvent();
-
     }
-    private void setVisibleWindow(){frame.setVisible(true);}
+
+    private void setVisibleWindow() {
+        frame.setVisible(true);
+    }
 
     private void createWindow() {
-        frame.setPreferredSize (new Dimension (850, 520));
-        frame.setLayout (null);
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(850, 520));
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
     }
 
     public void createTable() {
-        Object[] columns = { "Route Id", "Origin", "Destination", "Departure", "Price", "Seates", "Date" };
-        final DefaultTableModel model = new DefaultTableModel();
+        Object[] columns = {"Route Id", "Origin", "originCity", "Destination", "destinationCity", "Departure", "time", "Price", "Seates", "RemainSeats"};
+        model = new DefaultTableModel(tableData, columns);
         model.setColumnIdentifiers(columns);
         table.setModel(model);
-        table.setBackground(Color.CYAN.brighter());
-        table.setForeground(Color.black);
-        Font font = new Font("", 1, 18);
-        table.setFont(font);
+//        table.setBackground(Color.CYAN.brighter());
+//        table.setForeground(Color.black);
+//        Font font = new Font("", 1, 18);
+//        table.setFont(font);
         table.setRowHeight(30);
     }
+
 
     public void setLocationAndSize() {
         firstName.setBounds(45, 80, 100, 25);
@@ -117,8 +122,7 @@ public class customerPage extends JPanel implements ActionListener {
         frame.add(addr_label);
     }
 
-    public void actionEvent()
-    {
+    public void actionEvent() {
         editDetails.addActionListener(this);
         book_route.addActionListener(this);
         deleteRoute.addActionListener(this);
@@ -148,14 +152,74 @@ public class customerPage extends JPanel implements ActionListener {
 
     }
 
+
+    private void populateData() {
+        ResultSet resultSet = null;
+        try {
+            Connection conn = dbConnection.getInstance().getConnection();
+            String sql = "SELECT * from busbook.routes, busbook.bookedroutes where bookedroutes.routeId = routes.routeId and customerId =?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, customer_id);
+            resultSet = preparedStatement.executeQuery();
+
+            int i = 0;
+            while (resultSet.next()) {
+                String routeId = resultSet.getString("routeId");
+                String origin = resultSet.getString("origin");
+                String originCity = resultSet.getString("originCity");
+                String destination = resultSet.getString("destination");
+                String destinationCity = resultSet.getString("destinationCity");
+                Date departure = resultSet.getDate("departure");
+                Time time = resultSet.getTime("time");
+                Double price = resultSet.getDouble("price");
+                Integer seats = resultSet.getInt("seats");
+                Integer remainSeats = resultSet.getInt("remainSeats");
+                tableData[i][0] = String.valueOf(routeId);
+                tableData[i][1] = String.valueOf(origin);
+                tableData[i][2] = String.valueOf(originCity);
+                tableData[i][3] = String.valueOf(destination);
+                tableData[i][4] = String.valueOf(destinationCity);
+                tableData[i][5] = String.valueOf(departure);
+                tableData[i][6] = String.valueOf(time);
+                tableData[i][7] = String.valueOf(price);
+                tableData[i][8] = String.valueOf(seats);
+                tableData[i][9] = String.valueOf(remainSeats);
+                i++;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
             if (e.getSource() == editDetails){
 
             }
+            if ((e.getSource() == deleteRoute)){
+                int column = 0;
+                int row = table.getSelectedRow();
+                String value = table.getModel().getValueAt(row, column).toString();
+
+                ResultSet resultSet = null;
+                Statement statement = null;
+                try {
+                    Connection conn = dbConnection.getInstance().getConnection();
+                    PreparedStatement preparedStatement = conn
+                            .prepareStatement("delete from busbook.bookedroutes where routeId= ? ; ");
+                    preparedStatement.setString(1, value);
+                    preparedStatement.executeUpdate();
+//                preparedStatement.execute();
+                    model.removeRow(row);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         new customerPage();
     }
 

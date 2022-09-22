@@ -41,9 +41,9 @@ public class EmployeeRegistrationUpdateForm extends JFrame implements ActionList
 
     private void populateData() {
 
-        String firstName = firstnameTextField.getText();
-        String password = passwordTextField.getText();
-        String lastName = lastNameTextField.getText();
+//        String firstName = firstnameTextField.getText();
+//        String password = passwordTextField.getText();
+//        String lastName = lastNameTextField.getText();
 
         ResultSet resultSet = null;
         try {
