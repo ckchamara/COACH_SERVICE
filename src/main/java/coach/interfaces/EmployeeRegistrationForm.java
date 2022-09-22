@@ -43,7 +43,7 @@ public class EmployeeRegistrationForm extends JFrame implements ActionListener {
         frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     public void setLocationAndSize()
     {

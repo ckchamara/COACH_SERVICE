@@ -52,7 +52,7 @@ public class CustomerRegistrationForm extends JFrame implements ActionListener {
         frame.setBounds(40,40,380,600);
         frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
     public void setLocationAndSize()

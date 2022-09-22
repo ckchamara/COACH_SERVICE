@@ -1,9 +1,14 @@
 package coach.interfaces;
 
 
+import coach.dao.dbConnection;
+import coach.interfaces.customer.customerPage;
+import coach.interfaces.employee.employeePage;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class LoginFrame extends JFrame implements ActionListener {
 
@@ -25,7 +30,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         frame.setBounds(40,40,380,600);
         // frame.getContentPane().setBackground(Color.lightGray);
         frame.getContentPane().setLayout(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
 
@@ -80,20 +85,47 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Coding Part of LOGIN button
-        if (empOrUserCheck.isSelected()){
-            // TODO: 12/30/2021 emp code
-        }else {
-            // TODO: 12/30/2021 customer code
-        }
+
         if (e.getSource() == loginButton) {
-            String userText;
-            String pwdText;
-            userText = userTextField.getText();
-            pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("aa") && pwdText.equalsIgnoreCase("123")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
+            String userText = userTextField.getText();
+            String pwdText = passwordField.getText();
+
+            if (empOrUserCheck.isSelected()){
+                ResultSet resultSet = null;
+                try {
+                    String query = "SELECT * FROM busbook.employees WHERE firstName =? AND password =?";
+                    Connection conn = dbConnection.getInstance().getConnection();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1,userTextField.getText());
+                    preparedStatement.setString(2,passwordField.getText());
+                    resultSet = preparedStatement.executeQuery();
+
+                    if (resultSet.next()) {
+                        String empiID = resultSet.getString("empId");
+                        new employeePage(empiID);
+                    }
+                } catch (Exception ye) {
+                    ye.printStackTrace();
+                }
+
+            }else if(!empOrUserCheck.isSelected()) {
+                ResultSet resultSet = null;
+                try {
+                    String query = "SELECT * FROM busbook.customers WHERE FirstName =? AND LoginPassword =?";
+                    Connection conn = dbConnection.getInstance().getConnection();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1,userTextField.getText());
+                    preparedStatement.setString(2,passwordField.getText());
+                    resultSet = preparedStatement.executeQuery();
+
+                    if (resultSet.next()) {
+                        String customerID = resultSet.getString("CustomerId");
+                        new customerPage(customerID);
+                    }
+                } catch (Exception ye) {
+                    ye.printStackTrace();
+                }
+            }else{
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
 
@@ -105,9 +137,12 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == RegisterButton) {
-            new CustomerRegistrationForm();
-//            app.frame.setVisible(false);
-//            app.frame.dispose();
+            if (empOrUserCheck.isSelected()){
+                new EmployeeRegistrationForm();
+            }else {
+                new CustomerRegistrationForm();
+            }
+
         }
 
         //Coding Part of showPassword JCheckBox

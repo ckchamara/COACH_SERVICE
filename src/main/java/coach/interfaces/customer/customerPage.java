@@ -15,7 +15,7 @@ import java.sql.*;
 public class customerPage extends JPanel implements ActionListener {
 
     // TODO: 1/2/2022
-    String customer_id = "10";
+    String customer_id;
     String tableData[][] = new String[25][20];
 
     DefaultTableModel model;
@@ -45,7 +45,8 @@ public class customerPage extends JPanel implements ActionListener {
     JLabel phone_label;
     JLabel addr_label;
 
-    public customerPage() {
+    public customerPage(String cusID) {
+        customer_id = cusID;
         createWindow();
         populateData();
         createTable();
@@ -223,7 +224,7 @@ public class customerPage extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new customerPage();
+//        new customerPage();
     }
 
 }

@@ -15,7 +15,7 @@ import java.sql.*;
 public class employeePage extends JPanel implements ActionListener {
 
     //construct components
-    String employeeId = "2";
+    String employeeId;
     JFrame frame = new JFrame("Employee Profile");
     JLabel empid = new JLabel("EMP ID:");
     JLabel lastname = new JLabel("LASTNAME:");
@@ -34,7 +34,8 @@ public class employeePage extends JPanel implements ActionListener {
 
     DefaultTableModel model;
 
-    public employeePage() {
+    public employeePage( String empID) {
+        employeeId = empID;
 //        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         createWindow();
@@ -188,7 +189,7 @@ public class employeePage extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new employeePage();
+//        new employeePage();
     }
 
 }
